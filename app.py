@@ -8,6 +8,7 @@ from helpers import apology, login_required, lookup, usd, contrast_stretch, calc
 import numpy as np
 import cv2
 
+# this is features
 
 # Configure application
 app = Flask(__name__)
