@@ -2,13 +2,11 @@ import os
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, url_for
-from numpy.lib.type_check import imag
 
-from helpers import apology, login_required, lookup, usd, contrast_stretch, calc_ndvi
+from helpers import apology, login_required, lookup, usd, contrast_stretch, calc_ndvi, fastiecm
 
 import numpy as np
 import cv2
-from fastiecm import fastiecm
 
 
 # Configure application
@@ -30,13 +28,15 @@ def index():
         images.append(file.filename)
 
         file.save(os.path.join(app.config['UPLOAD_PATH'], file.filename))
-        
+
         # getting path to image to read into variable original 
         # getting the full path will be an issue for later to come ?????
-        original = cv2.imread(f'/Users/joserodriguez/Desktop/SOLO LEARN/ndvi/static/uploads/{file.filename}')
+        
+        original = cv2.imread(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{file.filename}')
         
         # sending original image through contrast and saving
         contrasted = contrast_stretch(original)
+        
         ndvi = calc_ndvi(contrasted)
         contrast_ndvi = contrast_stretch(ndvi)
 
@@ -50,16 +50,16 @@ def index():
 
         color_mapped_image_path = 'color_mapped.' + file.filename.rsplit('.', 1)[1].lower()
         
-        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/ndvi/static/uploads/{contrast}', contrasted)
+        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{contrast}', contrasted)
         images.append(contrast)
 
-        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/ndvi/static/uploads/{ndvi_image}', ndvi)
+        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{ndvi_image}', ndvi)
         images.append(ndvi_image)
 
-        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/ndvi/static/uploads/{contrast_ndvi_image}', contrast_ndvi)
+        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{contrast_ndvi_image}', contrast_ndvi)
         images.append(contrast_ndvi_image)
 
-        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/ndvi/static/uploads/{color_mapped_image_path}', color_mapped_image)
+        cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{color_mapped_image_path}', color_mapped_image)
         images.append(color_mapped_image_path)
 
         return render_template('modified.html', images=images)
