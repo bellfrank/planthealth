@@ -5,30 +5,80 @@
 {% endblock %}
 
 {% block main %}
+<div class="row">
+    <div>
+        <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[0] )}}" style="width: 300px"/>
+        <figcaption>Fig.1 - Original Version</figcaption>
+    </div>
+    <p></p>
+    <p></p>
+    <div class="column">
+        <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[1] )}}" style="width: 300px"/>
+        <figcaption>Fig.2 - Contrasted</figcaption>
+    </div>
 
-<div align="left" >
-    <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[0] )}}" style="width: 300px"/>
-    <figcaption>Fig.1 - Original Version</figcaption>
+    <div class="column">
+        <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[2] )}}" style="width: 300px"/>
+        <figcaption>Fig.3 - NDVI</figcaption>
+    </div>
+
+    <div class="column">
+        <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[3] )}}" style="width: 300px"/>
+        <figcaption>Fig.4 - NDVI Contrasted.</figcaption>
+    </div>
+
+    <div class="column">
+        <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[4] )}}" style="width: 300px"/>
+        <figcaption>Fig.5 - Colour mapped.</figcaption>
+    </div>
+
 </div>
 
-<div align="right" >
-    <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[1] )}}" style="width: 300px"/>
-    <figcaption>Fig.2 - Contrasted</figcaption>
-</div>
+<script>
+    function getPosition(el) {
+   return {
+     x: el.offsetLeft + el.offsetWidth / 2,
+     y: el.offsetTop + el.offsetHeight / 2
+   };
+ }
 
-<div align="left" >
-    <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[2] )}}" style="width: 300px"/>
-    <figcaption>Fig.3 - NDVI</figcaption>
-</div>
+ function getDistance(a, b) {
+   const from = getPosition(a);
+   const to = getPosition(b);
 
-<div align="right" >
-    <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[3] )}}" style="width: 300px"/>
-    <figcaption>Fig.4 - NDVI Contrasted.</figcaption>
-</div>
+   return {
+   //https://stackoverflow.com/a/17628488/529024
+     distance: Math.hypot(from.x - to.x, from.y - to.y),
+     angle: Math.atan2(to.x - from.x, from.y - to.y) * 180 / Math.PI,
+     position: {
+       start: from,
+       end: to
+     }
+   }
+ }
 
-<div align="left" >
-    <img id="output" name="img" alt="Display Picture" src="{{url_for('static', filename ='uploads/' + images[4] )}}" style="width: 300px"/>
-    <figcaption>Fig.5 - Colour mapped.</figcaption>
-</div>
+function init(){
+// Get values and elements then set style
+ const values = getDistance(
+   document.getElementById("start"),
+   document.getElementById("end")
+ );
+ 
+ 
+ let wrapper = document.getElementById('wrapper');
+ let arrow = document.getElementById('arrow');
+ let bottom = wrapper.offsetHeight - values.position.start.y;
+ arrow.style.height = values.distance + "px";
+ arrow.style.transform = `rotate(${values.angle}deg)`;
+ arrow.style.bottom = bottom + "px";
+ arrow.style.left = values.position.start.x + "px";
+}
+
+init();
+
+window.addEventListener('resize', function(){
+ init();
+});
+</script>
 
 {% endblock %}
