@@ -22,41 +22,28 @@ nav .navbar-brand .green
     color: #2e944b;
 }
 
-/* body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column;
-    height: 100hv;
-} */
+body{
+    background-color: whitesmoke;
+}
 
-.ndvi{
-    width: 400px;
-    height: 225px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    /* border: 1px solid black; */
- }
 
- #display_image{
-    width: 300px;
-    height: 169px;
-    border: 1px solid black;
-    background-position: center;
-    background-size: cover;
- }
 
- #myProgress {
-    width: 20%;
-    background-color: grey;
-  }
-  
-  #myBar {
-    width: 1%;
-    height: 30px;
-    background-color: green;
-  }
+#display_image{
+width: 400px;
+height: 300px;
+/* border: 1px solid black; */
+margin-left: auto;
+margin-right: auto;
+background-size: cover;
+}
+
+#myProgress {
+width: 20%;
+background-color: grey;
+}
+
+#myBar {
+width: 1%;
+height: 30px;
+background-color: green;
+}

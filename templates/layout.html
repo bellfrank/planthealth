@@ -16,7 +16,7 @@
 
         <link href="/static/styles.css" rel="stylesheet">
 
-        <title>Plant Health {% block title %}{% endblock %}</title>
+        <title>Plant Health Analysis {% block title %}{% endblock %}</title>
 
     </head>
 
@@ -24,17 +24,10 @@
 
         <nav class="bg-light border navbar navbar-expand-md navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><span class="blue">N</span><span class="red">D</span><span class="yellow">V</span><span class="purple">I</span> <span class="green">Plant Health</span></a>
+                <a class="navbar-brand" href="/"><span class="blue">N</span><span class="green">D</span><span class="red">V</span><span class="black">I</span> <span class="green">Plant Health</span></a>
             </div>
         </nav>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" id="image_input" name="file" accept="image/png, image/jpg">
-        <div id="display_image"></div>
-
-        <!-- fetches upload script -->
-        <script src="{{url_for('static', filename='script.js')}}"></script>
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
+    
 
         {% if get_flashed_messages() %}
             <header>
@@ -53,5 +46,4 @@
         </footer>
 
     </body>
-
 </html>
