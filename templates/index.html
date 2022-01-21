@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block main %}
+<form method="post" enctype="multipart/form-data">
+    <div id="display_image"></div>
+    <input type="file" id="image_input" name="file" accept="image/png, image/jpg">
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    <!-- fetches upload script -->
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</form>
+
+{%endblock%}
