@@ -57,7 +57,7 @@ def upload_file():
             images = []
             images.append(filename)
             
-            original = cv2.imread(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{file.filename}')
+            original = cv2.imread(f'static/uploads/{file.filename}')
             
             # sending original image through contrast and saving
             contrasted = contrast_stretch(original)
@@ -75,16 +75,16 @@ def upload_file():
 
             color_mapped_image_path = 'color_mapped.' + file.filename.rsplit('.', 1)[1].lower()
             
-            cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{contrast}', contrasted)
+            cv2.imwrite(f'static/uploads/{contrast}', contrasted)
             images.append(contrast)
 
-            cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{ndvi_image}', ndvi)
+            cv2.imwrite(f'static/uploads/{ndvi_image}', ndvi)
             images.append(ndvi_image)
 
-            cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{contrast_ndvi_image}', contrast_ndvi)
+            cv2.imwrite(f'static/uploads/{contrast_ndvi_image}', contrast_ndvi)
             images.append(contrast_ndvi_image)
 
-            cv2.imwrite(f'/Users/joserodriguez/Desktop/SOLO LEARN/plant health/ndvi/static/uploads/{color_mapped_image_path}', color_mapped_image)
+            cv2.imwrite(f'static/uploads/{color_mapped_image_path}', color_mapped_image)
             images.append(color_mapped_image_path)
 
             return render_template('modified.html', images=images)
