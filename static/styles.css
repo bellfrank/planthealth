@@ -48,6 +48,15 @@ height: 30px;
 background-color: green;
 }
 
+div {
+  margin-bottom: 15px;
+  padding: 4px 12px;
+}
+.warning {
+  background-color: #ffffcc;
+  border-left: 6px solid #ffeb3b;
+}
+
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
     float: left;
